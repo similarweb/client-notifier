@@ -59,10 +59,10 @@ func TestGet(t *testing.T) {
 	server := createMockWebserver("v1/api/latest-version", handler)
 
 	params := &UpdaterParams{}
-	requestSetitng := &RequestSetting{
+	requestSetting := RequestSetting{
 		Host: "http://127.0.0.1:5000",
 	}
-	response, err := Get(params, requestSetitng)
+	response, err := Get(params, requestSetting)
 
 	if err != nil {
 		t.Errorf("unexpected error: %v", err)
@@ -107,11 +107,11 @@ func TestRequestTimeputGet(t *testing.T) {
 	server := createMockWebserver("v1/api/latest-version", handler)
 
 	params := &UpdaterParams{}
-	requestSetitng := &RequestSetting{
+	requestSetting := RequestSetting{
 		Host: "http://127.0.0.1:5000",
 	}
 
-	_, err := Get(params, requestSetitng)
+	_, err := Get(params, requestSetting)
 
 	if err == nil {
 		t.Errorf("unexpected error: %v", err)
@@ -128,7 +128,7 @@ func TestCheckInterval(t *testing.T) {
 	callerCount := 0
 	ctx, cancelFn := context.WithCancel(context.Background())
 	params := &UpdaterParams{}
-	requestSetitng := &RequestSetting{
+	requestSetting := RequestSetting{
 		Host: "http://127.0.0.1:5000",
 	}
 
@@ -137,7 +137,7 @@ func TestCheckInterval(t *testing.T) {
 	}
 
 	interval := 1 * time.Second
-	GetInterval(ctx, params, interval, requestSetitng, update)
+	GetInterval(ctx, params, interval, update, requestSetting)
 
 	time.Sleep(time.Second * 5)
 	cancelFn()

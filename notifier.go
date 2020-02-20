@@ -51,7 +51,7 @@ type Notification struct {
 }
 
 // Get creates http call fo getting the latest version of the application
-func Get(p *UpdaterParams, requestSetting *RequestSetting) (*Response, error) {
+func Get(p *UpdaterParams, requestSetting RequestSetting) (*Response, error) {
 
 	client := &http.Client{
 		Timeout: HTTRequestTimeout * time.Second,
@@ -89,7 +89,7 @@ func Get(p *UpdaterParams, requestSetting *RequestSetting) (*Response, error) {
 }
 
 // GetInterval called to get the the version of the application during the inteval time.
-func GetInterval(ctx context.Context, p *UpdaterParams, interval time.Duration, requestSetting *RequestSetting, update func(*Response, error)) {
+func GetInterval(ctx context.Context, p *UpdaterParams, interval time.Duration, update func(*Response, error), requestSetting RequestSetting) {
 
 	go func() {
 		for {
