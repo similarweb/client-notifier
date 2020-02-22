@@ -58,7 +58,6 @@ func Get(p *UpdaterParams, requestSetting RequestSetting) (*Response, error) {
 	}
 
 	data := url.Values{}
-	data.Set("application", p.Application)
 	data.Set("component", p.Component)
 
 	host := HTTPDefaultHost
@@ -67,7 +66,7 @@ func Get(p *UpdaterParams, requestSetting RequestSetting) (*Response, error) {
 		host = requestSetting.Host
 	}
 
-	req, err := http.NewRequest("GET", fmt.Sprintf("%s/v1/api/latest-version", host), bytes.NewBufferString(data.Encode()))
+	req, err := http.NewRequest("GET", fmt.Sprintf("%s/v1/api/latest-version/%s", host, p.Application), bytes.NewBufferString(data.Encode()))
 	if err != nil {
 		return nil, err
 	}

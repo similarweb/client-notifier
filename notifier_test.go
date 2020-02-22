@@ -56,9 +56,11 @@ func TestGet(t *testing.T) {
 
 	}
 
-	server := createMockWebserver("v1/api/latest-version", handler)
+	server := createMockWebserver("v1/api/latest-version/test", handler)
 
-	params := &UpdaterParams{}
+	params := &UpdaterParams{
+		Application: "test",
+	}
 	requestSetting := RequestSetting{
 		Host: "http://127.0.0.1:5000",
 	}
@@ -104,9 +106,11 @@ func TestRequestTimeputGet(t *testing.T) {
 
 	}
 
-	server := createMockWebserver("v1/api/latest-version", handler)
+	server := createMockWebserver("v1/api/latest-version/test", handler)
 
-	params := &UpdaterParams{}
+	params := &UpdaterParams{
+		Application: "test",
+	}
 	requestSetting := RequestSetting{
 		Host: "http://127.0.0.1:5000",
 	}
@@ -127,9 +131,11 @@ func TestCheckInterval(t *testing.T) {
 
 	callerCount := 0
 	ctx, cancelFn := context.WithCancel(context.Background())
-	params := &UpdaterParams{}
+	params := &UpdaterParams{
+		Application: "test",
+	}
 	requestSetting := RequestSetting{
-		Host: "http://127.0.0.1:5000",
+		Host: "http://127.0.0.1:5000/test",
 	}
 
 	var update = func(*Response, error) {
