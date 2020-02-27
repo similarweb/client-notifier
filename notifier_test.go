@@ -56,7 +56,7 @@ func TestGet(t *testing.T) {
 
 	}
 
-	server := createMockWebserver("v1/api/latest-version/test", handler)
+	server := createMockWebserver("api/v1/latest-version/test", handler)
 
 	params := &UpdaterParams{
 		Application: "test",
@@ -106,7 +106,7 @@ func TestRequestTimeputGet(t *testing.T) {
 
 	}
 
-	server := createMockWebserver("v1/api/latest-version/test", handler)
+	server := createMockWebserver("api/v1/latest-version/test", handler)
 
 	params := &UpdaterParams{
 		Application: "test",
