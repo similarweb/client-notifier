@@ -39,9 +39,9 @@ func TestGet(t *testing.T) {
 	var handler handlerDescriber = func(w http.ResponseWriter, r *http.Request) {
 
 		res := Response{
-			LatestVersion:     "1.0.0",
-			LatestReleaseDate: 1234567,
-			Outdated:          true,
+			CurrentVersion:     "1.0.0",
+			CurrentDownloadURL: "foo.com",
+			Outdated:           true,
 			Notifications: []*Notification{
 				{12345, "message"},
 				{12345, "message"},
@@ -70,12 +70,12 @@ func TestGet(t *testing.T) {
 		t.Errorf("unexpected error: %v", err)
 	}
 
-	if response.LatestVersion != "1.0.0" {
-		t.Fatalf("unexpected latest version value: got %s want %s", response.LatestVersion, "1.0.0")
+	if response.CurrentVersion != "1.0.0" {
+		t.Fatalf("unexpected latest version value: got %s want %s", response.CurrentVersion, "1.0.0")
 	}
 
-	if response.LatestReleaseDate != 1234567 {
-		t.Fatalf("unexpected latest release date value: got %d want %d", response.LatestReleaseDate, 1234567)
+	if response.CurrentDownloadURL != "foo.com" {
+		t.Fatalf("unexpected latest release date value: got %s want %s", response.CurrentDownloadURL, "foo.com")
 	}
 
 	if response.Outdated != true {

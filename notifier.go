@@ -13,7 +13,7 @@ import (
 
 const (
 	// HTTPDefaultHost default of webserver
-	HTTPDefaultHost = "https://version.similarweb.com"
+	HTTPDefaultHost = "https://version.similarweb.engineering"
 
 	// HTTRequestTimeout defins the http timeout
 	HTTRequestTimeout = 3
@@ -38,10 +38,10 @@ type UpdaterParams struct {
 
 // Response is the response from notifier webserver.
 type Response struct {
-	LatestVersion     string          `json:"LatestVersion"`
-	LatestReleaseDate int             `json:"LatestReleaseDate"`
-	Outdated          bool            `json:"Outdated"`
-	Notifications     []*Notification `json:"Notifications"`
+	CurrentVersion     string          `json:"CurrentVersion"`
+	CurrentDownloadURL string          `json:"CurrentDownloadURL"`
+	Outdated           bool            `json:"Outdated"`
+	Notifications      []*Notification `json:"Notifications"`
 }
 
 // Notification is a Notification message from notifier webserver.
