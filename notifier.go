@@ -38,10 +38,10 @@ type UpdaterParams struct {
 
 // Response is the response from notifier webserver.
 type Response struct {
-	CurrentVersion     string          `json:"CurrentVersion"`
-	CurrentDownloadURL string          `json:"CurrentDownloadURL"`
-	Outdated           bool            `json:"Outdated"`
-	Notifications      []*Notification `json:"Notifications"`
+	CurrentVersion     string          `json:"current_version"`
+	CurrentDownloadURL string          `json:"current_download_url"`
+	Outdated           bool            `json:"outdated"`
+	Notifications      []*Notification `json:"notifications"`
 }
 
 // Notification is a Notification message from notifier webserver.
@@ -66,7 +66,7 @@ func Get(p *UpdaterParams, requestSetting RequestSetting) (*Response, error) {
 		host = requestSetting.Host
 	}
 
-	req, err := http.NewRequest("GET", fmt.Sprintf("%s/v1/api/latest-version/%s", host, p.Application), bytes.NewBufferString(data.Encode()))
+	req, err := http.NewRequest("GET", fmt.Sprintf("%s/api/v1/latest-version/%s", host, p.Application), bytes.NewBufferString(data.Encode()))
 	if err != nil {
 		return nil, err
 	}
