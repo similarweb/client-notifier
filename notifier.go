@@ -13,7 +13,7 @@ import (
 
 const (
 	// HTTPDefaultHost default of webserver
-	HTTPDefaultHost = "https://version.similarweb.com"
+	HTTPDefaultHost = "https://version.similarweb.engineering"
 
 	// HTTRequestTimeout defins the http timeout
 	HTTRequestTimeout = 3
