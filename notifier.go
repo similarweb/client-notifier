@@ -29,6 +29,9 @@ type UpdaterParams struct {
 	// Name the application
 	Application string
 
+	// Name of the Organization
+	Organization string
+
 	// Name of the component
 	Component string
 
@@ -66,7 +69,7 @@ func Get(p *UpdaterParams, requestSetting RequestSetting) (*Response, error) {
 		host = requestSetting.Host
 	}
 
-	req, err := http.NewRequest("GET", fmt.Sprintf("%s/api/v1/latest-version/%s", host, p.Application), bytes.NewBufferString(data.Encode()))
+	req, err := http.NewRequest("GET", fmt.Sprintf("%s/api/v1/latest-version/%s/%s", host, p.Organization, p.Application), bytes.NewBufferString(data.Encode()))
 	if err != nil {
 		return nil, err
 	}

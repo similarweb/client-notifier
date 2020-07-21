@@ -56,10 +56,11 @@ func TestGet(t *testing.T) {
 
 	}
 
-	server := createMockWebserver("api/v1/latest-version/test", handler)
+	server := createMockWebserver("api/v1/latest-version/test-org/test", handler)
 
 	params := &UpdaterParams{
-		Application: "test",
+		Application:  "test",
+		Organization: "test-org",
 	}
 	requestSetting := RequestSetting{
 		Host: "http://127.0.0.1:5000",
@@ -106,10 +107,11 @@ func TestRequestTimeputGet(t *testing.T) {
 
 	}
 
-	server := createMockWebserver("api/v1/latest-version/test", handler)
+	server := createMockWebserver("api/v1/latest-version/test-org/test", handler)
 
 	params := &UpdaterParams{
-		Application: "test",
+		Application:  "test",
+		Organization: "test-org",
 	}
 	requestSetting := RequestSetting{
 		Host: "http://127.0.0.1:5000",
