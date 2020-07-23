@@ -1,7 +1,6 @@
 package notifier
 
 import (
-	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -62,6 +61,7 @@ func Get(p *UpdaterParams, requestSetting RequestSetting) (*Response, error) {
 
 	data := url.Values{}
 	data.Set("component", p.Component)
+	data.Set("version", p.Version)
 
 	host := HTTPDefaultHost
 
@@ -69,10 +69,16 @@ func Get(p *UpdaterParams, requestSetting RequestSetting) (*Response, error) {
 		host = requestSetting.Host
 	}
 
-	req, err := http.NewRequest("GET", fmt.Sprintf("%s/api/v1/latest-version/%s/%s", host, p.Organization, p.Application), bytes.NewBufferString(data.Encode()))
+	versionAPIURL := fmt.Sprintf("%s/api/v1/latest-version/%s/%s", host, p.Organization, p.Application)
+
+	req, err := http.NewRequest("GET", versionAPIURL, nil)
 	if err != nil {
 		return nil, err
 	}
+
+	// Add the queryparams to versionAPIURL
+	req.URL.RawQuery = data.Encode()
+
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
